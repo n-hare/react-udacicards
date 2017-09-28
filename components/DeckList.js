@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { FlatList, Text, View } from 'react-native'
 import DeckTitle from './DeckTitle'
 
 class DeckList extends React.Component {
@@ -32,8 +32,7 @@ class DeckList extends React.Component {
   render() {
     return (
       <View>
-          <Text>Deck</Text>
-          {this.state.decks.map((deck, i) => ( <DeckTitle key={i} deck={deck} />)) }
+          <FlatList data={this.state.decks} renderItem={(deck) => <DeckTitle deck={deck.item} /> } keyExtractor={(item) => item.title } />
       </View>
     )
   }
