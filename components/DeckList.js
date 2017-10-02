@@ -32,7 +32,8 @@ class DeckList extends React.Component {
   render() {
     return (
       <View>
-          <FlatList data={this.state.decks} renderItem={(deck) => <DeckTitle deck={deck.item} /> } keyExtractor={(item) => item.title } />
+        <Text>Deck</Text>
+        <FlatList data={this.state.decks} renderItem={(deck) => <DeckTitle deck={deck.item} /> } keyExtractor={(item) => item.title } />
       </View>
     )
   }
