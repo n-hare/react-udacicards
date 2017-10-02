@@ -34,12 +34,12 @@ class SingleDeck extends React.Component {
     return (
       <View style={styles.container}>
         <DeckTitle deck={this.state.decks[0]} />
-          <TouchableOpacity style={[styles.btn, {backgroundColor: blue}]}>
-            <Text style={styles.btnText}>Add Card</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={[styles.btn, {backgroundColor: green}]}>
-            <Text style={styles.btnText}>Start Quiz</Text>
-          </TouchableOpacity>
+        <TouchableOpacity style={[styles.btn, {backgroundColor: blue}]}>
+          <Text style={styles.btnText}>Add Card</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={[styles.btn, {backgroundColor: green}]}>
+          <Text style={styles.btnText}>Start Quiz</Text>
+        </TouchableOpacity>
 
       </View>
     )
@@ -56,10 +56,10 @@ const styles = StyleSheet.create({
   btn: {
     borderRadius: 10,
     height: 45,
-    padding: 10,
+    padding: 25,
     marginBottom: 15,
-    marginLeft: 10,
-    marginRight: 10,
+    marginLeft: 25,
+    marginRight: 25,
     alignItems: 'center',
     justifyContent: 'center'
   },
