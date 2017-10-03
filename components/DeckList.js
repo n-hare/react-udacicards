@@ -1,5 +1,5 @@
 import React from 'react'
-import { FlatList, StyleSheet, View } from 'react-native'
+import { FlatList, StyleSheet, View, Text } from 'react-native'
 import DeckTitle from './DeckTitle'
 import { white } from '../utils/colours'
 
@@ -33,7 +33,8 @@ class DeckList extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <FlatList data={this.state.decks} renderItem={(deck) => <DeckTitle deck={deck.item} customStyles={{borderBottomWidth: 1}}/> } keyExtractor={(item) => item.title } />
+        <FlatList data={this.state.decks} renderItem={(deck) => <DeckTitle deck={deck.item} customStyles={{borderBottomWidth: 1}} navigation={this.props.navigation} /> } keyExtractor={(item) => item.title } />
+
       </View>
     )
   }
@@ -45,8 +46,6 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: white,
     justifyContent: 'flex-start',
-    borderTopWidth: 10,
-    borderColor: '#000'
   }
 })
 

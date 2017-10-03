@@ -5,35 +5,10 @@ import { blue, green, white } from '../utils/colours'
 
 class SingleDeck extends React.Component {
 
-    state = { decks: [
-  {
-    title: 'React',
-    questions: [
-      {
-        question: 'What is React?',
-        answer: 'A library for managing user interfaces'
-      },
-      {
-        question: 'Where do you make Ajax requests in React?',
-        answer: 'The componentDidMount lifecycle event'
-      }
-    ]
-  },
-  {
-    title: 'JavaScript',
-    questions: [
-      {
-        question: 'What is a closure?',
-        answer: 'The combination of a function and the lexical environment within which that function was declared.'
-      }
-    ]
-  }
-]}
-
   render() {
     return (
       <View style={styles.container}>
-        <DeckTitle deck={this.state.decks[0]} />
+        <DeckTitle deck={ this.props.navigation.state.params.deck} />
         <TouchableOpacity style={[styles.btn, {backgroundColor: blue}]}>
           <Text style={styles.btnText}>Add Card</Text>
         </TouchableOpacity>

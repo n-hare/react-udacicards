@@ -1,10 +1,12 @@
 import React from 'react'
 import { Text, View } from 'react-native'
+import { TabNavigator, StackNavigator } from 'react-navigation'
+import {  Entypo } from '@expo/vector-icons'
+
 import DeckList from './components/DeckList'
 import SingleDeck from './components/SingleDeck'
 import NewDeck from './components/NewDeck'
-import { TabNavigator } from 'react-navigation'
-import {  Entypo } from '@expo/vector-icons'
+
 
 const Tabs = TabNavigator({
   Decks: {
@@ -23,10 +25,16 @@ const Tabs = TabNavigator({
   }
 })
 
+const MainNav = StackNavigator({
+  Home: { screen: Tabs },
+  Deck: { screen: SingleDeck },
+
+})
+
 export default class App extends React.Component {
   render() {
     return (
-      <Tabs />
+      <MainNav />
     )
   }
 }
