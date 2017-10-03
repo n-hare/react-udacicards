@@ -5,7 +5,7 @@ class DeckTitle extends React.Component {
 
   render() {
     return (
-      <TouchableOpacity style={styles.card}>
+      <TouchableOpacity style={[styles.card, {...this.props.customStyles}]}>
         <Text style={{fontSize: 36 }}>
           {this.props.deck.title}
         </Text>
@@ -23,8 +23,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 30,
     alignItems: 'center',
-
-    borderColor: 'black'
+    borderColor: '#000'
   }
 })
 
