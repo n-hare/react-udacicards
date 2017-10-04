@@ -5,7 +5,7 @@ class DeckTitle extends React.Component {
 
   render() {
     return (
-      <TouchableOpacity style={[styles.card, {...this.props.customStyles}]} onPress={() => this.props.navigation.navigate('Deck', {deck: this.props.deck} )}>
+      <TouchableOpacity style={[styles.card, {...this.props.customStyles}]} onPress={() => this.props.navigation.navigate('Deck', { deck: this.props.deck} )}>
         <Text style={{fontSize: 36 }}>
           {this.props.deck.title}
         </Text>
