@@ -5,10 +5,9 @@ import {  Entypo } from '@expo/vector-icons'
 
 import { setData, getDecks } from './utils/api'
 import DeckList from './components/DeckList'
-import SingleDeck from './components/SingleDeck'
 import NewDeck from './components/NewDeck'
-
-import { AsyncStorage } from 'react-native'
+import Quiz from './components/NewDeck'
+import SingleDeck from './components/SingleDeck'
 
 
 const Tabs = TabNavigator({
@@ -31,14 +30,12 @@ const Tabs = TabNavigator({
 const MainNav = StackNavigator({
   Home: { screen: Tabs },
   Deck: { screen: SingleDeck },
+  Quiz: { screen: Quiz}
 
 })
 
 export default class App extends React.Component {
-  componentDidMount() {
-    AsyncStorage.removeItem('UdaciCards:flashcards')
 
-  }
   render() {
     return (
       <MainNav />

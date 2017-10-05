@@ -11,21 +11,19 @@ class NewDeck extends React.Component {
 
   render() {
     return (
-      <KeyboardAvoidingView behavior='padding' style={styles.container}>
-        <View style={[styles.container, {justifyContent: 'center'}]}>
-          <Text style={{fontSize: 48, textAlign: 'center'}}>What is the title of the new deck?</Text>
-          <TextInput
-            style={{borderBottomWidth: 1, borderColor: '#000', fontSize: 24, margin: 25}}
-            value={this.state.input}
-            onChangeText={(text) => this.setState({title:text})} // React Native Docs
-          />
-        </View>
-        <TouchableOpacity style={[styles.btn, {backgroundColor: blue}]}>
-          <Text style={styles.btnText}>Create Deck</Text>
-        </TouchableOpacity>
 
+        <KeyboardAvoidingView behavior='padding' style={styles.container}>
+            <Text style={{fontSize: 48, textAlign: 'center'}}>Please name the new deck</Text>
+            <TextInput
+              style={{borderBottomWidth: 1, borderColor: '#000', fontSize: 24, margin: 25}}
+              value={this.state.input}
+              onChangeText={(text) => this.setState({title:text})} // React Native Docs
+            />
+          <TouchableOpacity style={[styles.btn, {backgroundColor: blue}]}>
+            <Text style={styles.btnText}>Create Deck</Text>
+          </TouchableOpacity>
+        </KeyboardAvoidingView>
 
-      </KeyboardAvoidingView>
     )
   }
 }
@@ -36,7 +34,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     backgroundColor: white,
-    justifyContent: 'space-between'
+    justifyContent: 'center'
   },
   btn: {
     borderRadius: 10,

@@ -4,6 +4,14 @@ const DECKS_STORAGE_KEY = 'UdaciCards:flashcards'
 
 
 
+export function getDeck(deckKey) {
+  return AsyncStorage.getItem(DECKS_STORAGE_KEY)
+    .then(formatDecks)
+    .then((results) => {
+      return results[deckKey]
+    })
+}
+
 export function getDecks() {
   return AsyncStorage.getItem(DECKS_STORAGE_KEY)
     .then(formatDecks)
@@ -21,7 +29,7 @@ function setDefaultData() {
 }
 
 const dummyData = {
-  React: {
+  react: {
     title: 'React',
     questions: [
       {
@@ -34,7 +42,7 @@ const dummyData = {
       }
     ]
   },
-  ES6: {
+  es6: {
     title: 'ES6',
     questions: [
       {
