@@ -6,7 +6,7 @@ import {  Entypo } from '@expo/vector-icons'
 import { setData, getDecks } from './utils/api'
 import DeckList from './components/DeckList'
 import NewDeck from './components/NewDeck'
-import Quiz from './components/NewDeck'
+import Quiz from './components/Quiz'
 import SingleDeck from './components/SingleDeck'
 
 

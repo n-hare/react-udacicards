@@ -6,13 +6,14 @@ import { blue, green, white } from '../utils/colours'
 class SingleDeck extends React.Component {
 
   render() {
+    const { deck } = this.props.navigation.state.params
     return (
       <View style={styles.container}>
-        <DeckTitle deck={ this.props.navigation.state.params.deck} />
+        <DeckTitle deck={deck} />
         <TouchableOpacity style={[styles.btn, {backgroundColor: blue}]}>
           <Text style={styles.btnText}>Add Card</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.btn, {backgroundColor: green}]}>
+        <TouchableOpacity style={[styles.btn, {backgroundColor: green}]} onPress={() => this.props.navigation.navigate('Quiz', { deck: deck } )}>
           <Text style={styles.btnText}>Start Quiz</Text>
         </TouchableOpacity>
 
