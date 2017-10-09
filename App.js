@@ -28,26 +28,31 @@ const Tabs = TabNavigator({
 })
 
 const MainNav = StackNavigator({
-  Home: { screen: Tabs },
-  Deck: { screen: SingleDeck },
-  Quiz: { screen: Quiz}
-
-})
+  Home: {
+    screen: Tabs,
+  },
+  Deck: {
+    screen: SingleDeck
+     },
+  Quiz: {
+    screen: Quiz
+  }
+},
+  // example from https://reactnavigation.org/docs/navigators/stack
+  {
+   headerMode: 'none',
+   mode: 'screen',
+  }
+)
 
 export default class App extends React.Component {
-
   render() {
+
     return (
       <MainNav />
     )
   }
 }
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });
+
+//navigationOptions:{ header:{ visible:false }}

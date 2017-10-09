@@ -2,20 +2,19 @@ import React from 'react'
 import { FlatList, StyleSheet, View, Text } from 'react-native'
 import DeckTitle from './DeckTitle'
 import { white } from '../utils/colours'
-import { getDecks, getDeck } from '../utils/api'
+import { getDecks } from '../utils/api'
 
 class DeckList extends React.Component {
 
-state = {
-  decks: {}
-}
+   state = {
+    decks: {}
+  }
 
 componentDidMount() {
   getDecks().then(results => this.setState({
     decks: Object.keys(results).map(key=>results[key])
   }))
-  console.log('list showing')
-  getDeck('react').then(results => console.log(results))
+  // getDeck('react').then(results => console.log(results))
 }
 
   render() {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { green, red, white } from '../utils/colours'
+import { blue, green, red, white } from '../utils/colours'
 
 class Quiz extends React.Component {
   state = {
@@ -21,10 +21,20 @@ class Quiz extends React.Component {
             <Text style={{fontSize: 36}}>Quiz Complete</Text>
             <Text style={{fontSize: 24}} >{`${this.state.correctAnswers}/${this.state.questions.length}`}</Text>
           </View>
-          <TouchableOpacity style={[styles.btn, {backgroundColor: green}]}
-            onPress={() => this.props.navigation.navigate('Home')}
+          <TouchableOpacity style={[styles.btn, {backgroundColor: blue}]}
+            onPress={() => this.setState({
+              correctAnswers: 0,
+              complete: false,
+              questionNumber: 0,
+              showAnswer: false
+            })}
           >
-            <Text style={styles.btnText}>New Quiz</Text>
+            <Text style={styles.btnText}>Restart Quiz</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={[styles.btn, {backgroundColor: green}]}
+            onPress={() => this.props.navigation.navigate('Deck', { deck })}
+          >
+            <Text style={styles.btnText}>Back to Deck</Text>
           </TouchableOpacity>
         </View>
         :
@@ -47,7 +57,7 @@ class Quiz extends React.Component {
           <TouchableOpacity style={[styles.btn, {backgroundColor: green}]}
             onPress={() => { this.setState(prevState => {
               if (prevState.questionNumber < prevState.questions.length - 1) {
-                return { questionNumber: ++prevState.questionNumber, correctAnswers: ++prevState.correctAnswers}
+                return { questionNumber: ++prevState.questionNumber, correctAnswers: ++prevState.correctAnswers, showAnswer: false }
               } else {
                 return { correctAnswers: ++prevState.correctAnswers, complete: true }
               }
@@ -58,13 +68,13 @@ class Quiz extends React.Component {
           <TouchableOpacity style={[styles.btn, {backgroundColor: red}]}
               onPress={() => { this.setState(prevState => {
                 if (prevState.questionNumber < prevState.questions.length - 1) {
-                  return { questionNumber: ++prevState.questionNumber}
+                  return { questionNumber: ++prevState.questionNumber, showAnswer: false}
                 } else {
                   return { complete: true}
                 }
               }
             )}}
-            >
+          >
             <Text style={styles.btnText}>Incorrect</Text>
           </TouchableOpacity>
         </View>
