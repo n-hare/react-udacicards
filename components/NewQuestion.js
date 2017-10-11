@@ -5,7 +5,6 @@ import {  Entypo } from '@expo/vector-icons'
 import { Constants } from 'expo'
 import { blue, white, green } from '../utils/colours'
 import { createDeck } from '../actions'
-import { updateDecks } from '../utils/api'
 
 class NewQuestion extends React.Component {
 
@@ -25,9 +24,7 @@ class NewQuestion extends React.Component {
     }
     this.props.dispatch(createDeck(newQ))
     this.setState({question: '', answer: ''})
-    updateDecks(newQ)
     this.props.navigation.navigate('Deck', { deck: newQ })
-    // this.props.dispatch(createDeck(newQ))
   }
 
   render() {

@@ -14,8 +14,6 @@ import SingleDeck from './components/SingleDeck'
 import NewQuestion from './components/NewQuestion'
 import Quiz from './components/Quiz'
 
-
-
 const Tabs = TabNavigator({
   Decks: {
     screen: DeckList,
