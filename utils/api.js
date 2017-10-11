@@ -3,9 +3,13 @@ import { Notifications, Permissions } from 'expo'
 
 const NOTIFICATION_KEY = 'UdaciCards:notifications'
 
+// use in development
 export function resetNotifcation() {
   return AsyncStorage.removeItem(NOTIFICATION_KEY)
 }
+
+// Notification functions from template in coursework
+// Udacity React NanoDegree 4.5.5
 
 export function clearLocalNotification() {
   return AsyncStorage.removeItem(NOTIFICATION_KEY)
@@ -21,7 +25,6 @@ function createNotification() {
     },
     android: {
       sound: true,
-      priority: 'high',
       sticky: false,
       vibrate: true
     }
