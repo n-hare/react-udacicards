@@ -3,9 +3,11 @@ import { StyleSheet, TouchableOpacity, Text, View } from 'react-native'
 import {  Entypo } from '@expo/vector-icons'
 import { Constants } from 'expo'
 import DeckTitle from './DeckTitle'
+import { clearLocalNotification, setLocalNotification } from '../utils/api'
 import { blue, green, white } from '../utils/colours'
 
 class SingleDeck extends React.Component {
+
   render() {
     const { deck } = this.props.navigation.state.params
     return (
@@ -19,7 +21,12 @@ class SingleDeck extends React.Component {
             <Text style={styles.btnText}>Add Card</Text>
           </TouchableOpacity>
           {deck.questions.length > 0 &&
-          <TouchableOpacity style={[styles.btn, {backgroundColor: green}]} onPress={() => this.props.navigation.navigate('Quiz', { deck: deck } )}>
+          <TouchableOpacity style={[styles.btn, {backgroundColor: green}]}
+            onPress={()=> {
+              clearLocalNotification()
+              .then(setLocalNotification)
+            this.props.navigation.navigate('Quiz', { deck: deck } )
+            }}>
             <Text style={styles.btnText}>Start Quiz</Text>
           </TouchableOpacity>}
         </View>

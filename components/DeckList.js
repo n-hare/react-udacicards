@@ -1,25 +1,12 @@
 import React from 'react'
-import { FlatList, StyleSheet, View, Text } from 'react-native'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import { FlatList, StyleSheet, View, Text } from 'react-native'
+
 import { createDeck } from '../actions'
 import DeckTitle from './DeckTitle'
 import { white } from '../utils/colours'
-import { getDecks, resetStorage } from '../utils/api'
 
 class DeckList extends React.Component {
-
-
-componentDidMount() {
-  // resetStorage()
-
-  // getDecks().then(results => {
-  //   Object.keys(results).map(key => this.props.dispatch(createDeck(results[key])))
-  // }
-  //   )
-  // getDeck('react').then(results => console.log(results))
-
-}
 
   render() {
     return (
