@@ -2,7 +2,9 @@ import { AsyncStorage } from 'react-native'
 
 const DECKS_STORAGE_KEY = 'UdaciCards:flashcards'
 
-
+export function resetStorage() {
+  return AsyncStorage.removeItem(DECKS_STORAGE_KEY)
+}
 
 export function getDeck(deckKey) {
   return AsyncStorage.getItem(DECKS_STORAGE_KEY)
@@ -17,10 +19,17 @@ export function getDecks() {
     .then(formatDecks)
 }
 
+export function updateDecks(update) {
+  return AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify(update))
+  .then(results => console.log(results))
+}
+
 function formatDecks(results) {
-  return results === null
-    ? setDefaultData()
-    : JSON.parse(results)
+  // return results === null
+  //   ? setDefaultData()
+  //   : JSON.parse(results)
+
+      return  results === null ? {} : JSON.parse(results)
 }
 
 function setDefaultData() {
@@ -28,7 +37,7 @@ function setDefaultData() {
   return dummyData
 }
 
-const dummyData = {
+export const dummyData = {
   react: {
     title: 'React',
     questions: [

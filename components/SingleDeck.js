@@ -15,7 +15,7 @@ class SingleDeck extends React.Component {
         </TouchableOpacity>
         <View style={[styles.container, {padding: 22}]}>
           <DeckTitle deck={deck} />
-          <TouchableOpacity style={[styles.btn, {backgroundColor: blue}]}>
+          <TouchableOpacity style={[styles.btn, {backgroundColor: blue}]} onPress={() => this.props.navigation.navigate('NewQuestion', { deck: deck } )}>
             <Text style={styles.btnText}>Add Card</Text>
           </TouchableOpacity>
           {deck.questions.length > 0 &&
@@ -50,5 +50,5 @@ const styles = StyleSheet.create({
   }
 })
 
-export default SingleDeck
 
+export default SingleDeck

@@ -1,13 +1,18 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { Provider } from 'react-redux'
+import { compose, createStore } from 'redux'
+import { AsyncStorage, Text, View } from 'react-native'
 import { TabNavigator, StackNavigator } from 'react-navigation'
-import {  Entypo } from '@expo/vector-icons'
+import { Entypo } from '@expo/vector-icons'
+import { persistStore, autoRehydrate } from 'redux-persist'
 
-import { setData, getDecks } from './utils/api'
+import reducers from './reducers/decks'
 import DeckList from './components/DeckList'
 import NewDeck from './components/NewDeck'
-import Quiz from './components/Quiz'
 import SingleDeck from './components/SingleDeck'
+import NewQuestion from './components/NewQuestion'
+import Quiz from './components/Quiz'
+
 
 
 const Tabs = TabNavigator({
@@ -36,6 +41,9 @@ const MainNav = StackNavigator({
      },
   Quiz: {
     screen: Quiz
+  },
+  NewQuestion: {
+    screen: NewQuestion
   }
 },
   // example from https://reactnavigation.org/docs/navigators/stack
@@ -45,14 +53,16 @@ const MainNav = StackNavigator({
   }
 )
 
+const store = createStore(reducers, undefined, compose(autoRehydrate()))
+persistStore(store, {storage: AsyncStorage}).purge()
 export default class App extends React.Component {
-  render() {
 
+  render() {
     return (
-      <MainNav />
+      <Provider store={store}>
+        <MainNav />
+      </Provider>
     )
   }
 }
 
-
-//navigationOptions:{ header:{ visible:false }}

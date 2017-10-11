@@ -1,6 +1,11 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { KeyboardAvoidingView, StyleSheet, TouchableOpacity, Text, TextInput, View } from 'react-native'
-import { blue, white } from '../utils/colours'
+import {  Entypo } from '@expo/vector-icons'
+import { Constants } from 'expo'
+import { blue, white, green } from '../utils/colours'
+import { createDeck } from '../actions'
+import { updateDecks } from '../utils/api'
 
 class NewQuestion extends React.Component {
 
@@ -9,11 +14,30 @@ class NewQuestion extends React.Component {
     answer: ''
   }
 
+  handleCreateQuestion = () => {
+    const question = this.state.question.trim()
+    const answer = this.state.answer.trim()
+    const questions = [...this.props.navigation.state.params.deck.questions, {question, answer}]
+    const title = this.props.navigation.state.params.deck.title
+    const newQ = {
+      title,
+      questions
+    }
+    this.props.dispatch(createDeck(newQ))
+    this.setState({question: '', answer: ''})
+    updateDecks(newQ)
+    this.props.navigation.navigate('Deck', { deck: newQ })
+    // this.props.dispatch(createDeck(newQ))
+  }
 
   render() {
     return (
-      <KeyboardAvoidingView behavior='padding' style={styles.container}>
-        <View style={[styles.container, {justifyContent: 'center'}]}>
+      <KeyboardAvoidingView behavior='padding' style={[styles.container, {paddingTop: Constants.statusBarHeight + 11}]}>
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('Deck', {deck: this.props.deck})}>
+            <Text style={{fontSize: 18}}><Entypo name='chevron-left' size={18} color={green} />Deck</Text>
+          </TouchableOpacity>
+
+        <View style={[styles.container, {justifyContent: 'center', padding: 20}]}>
           <Text style={styles.formLabel}>Question</Text>
           <TextInput
             style={styles.formInput}
@@ -27,7 +51,7 @@ class NewQuestion extends React.Component {
             onChangeText={(text) => this.setState({answer:text})} // React Native Docs
           />
         </View>
-        <TouchableOpacity style={[styles.btn, {backgroundColor: blue}]}>
+        <TouchableOpacity style={[styles.btn, {backgroundColor: blue}]} onPress={this.handleCreateQuestion}>
           <Text style={styles.btnText}>Create Question</Text>
         </TouchableOpacity>
       </KeyboardAvoidingView>
@@ -39,7 +63,6 @@ class NewQuestion extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
     backgroundColor: white,
     justifyContent: 'space-between'
   },
@@ -70,5 +93,15 @@ const styles = StyleSheet.create({
   }
 })
 
-export default NewQuestion
+
+const mapStateToProps = (state, props ) => {
+  const key = props.navigation.state.params.deck.title
+  return ({
+      deck: state[key],
+      ...props
+
+  })
+}
+
+export default connect(mapStateToProps)(NewQuestion)
 
