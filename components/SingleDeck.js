@@ -16,7 +16,7 @@ class SingleDeck extends React.Component {
           <Text style={{fontSize: 18}}><Entypo name='chevron-left' size={18} color={green} />All Decks</Text>
         </TouchableOpacity>
         <View style={[styles.container, {padding: 22}]}>
-          <DeckTitle deck={deck} />
+          <DeckTitle deck={deck} navigation={this.props.navigation}/>
           <TouchableOpacity style={[styles.btn, {backgroundColor: blue}]} onPress={() => this.props.navigation.navigate('NewQuestion', { deck: deck } )}>
             <Text style={styles.btnText}>Add Card</Text>
           </TouchableOpacity>
